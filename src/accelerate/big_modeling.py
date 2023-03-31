@@ -338,6 +338,7 @@ def dispatch_model(
             state_dict = extract_submodules_state_dict(model.state_dict(), cpu_modules)
 
     disk_modules = [name for name, device in device_map.items() if device == "disk"]
+    offload_dir = "offload"
     if offload_dir is None and offload_index is None and len(disk_modules) > 0:
         raise ValueError(
             "We need an `offload_dir` to dispatch this model according to this `device_map`, the following submodules "
